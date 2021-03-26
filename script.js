@@ -12,3 +12,23 @@ let isGrabbing = false,
 // currentIndex will represident the current slide
     currentIndex = 0
 
+
+// in order to make sure when we drag an image we don't see ghosting 
+
+slides.forEach((slide, index) => {
+    const slideImage = slide.querySelector('img')
+    slideImage.addEventListener('dragstart', (e) => e.preventDefault())
+
+    // Touch events
+    slide.addEventListener('touchstart', touchStart(index))
+    slide.addEventListener('touchend', touchEnd)
+    slide.addEventListener('touchmove', touchMove)
+    
+    
+    // Mouse events
+    slide.addEventListener('mousedown', touchStart(index))
+    slide.addEventListener('mouseup', touchEnd)
+    slide.addEventListener('mouseleave', touchEnd)
+    slide.addEventListener('mousemove', touchMove)
+})
+

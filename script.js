@@ -32,3 +32,27 @@ slides.forEach((slide, index) => {
     slide.addEventListener('mousemove', touchMove)
 })
 
+// if we want to disable right-click menu 
+window.oncontextmenu = function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    return false
+}
+
+function touchStart(index) {
+    return function (event) {
+        isGrabbing = true;
+        console.log('start')
+    }
+}
+
+function touchEnd() {
+    isGrabbing = false;
+    console.log('end')
+}
+
+function touchMove() {
+    if (isGrabbing) {
+        console.log('move')
+    }
+}
